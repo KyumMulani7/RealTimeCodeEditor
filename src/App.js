@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import EditorRoomPages from "./Pages/EditorRoomPages";
 import { Toaster } from "react-hot-toast";
-
+import LivecodeState from "./Context/livecode/LivecodeState";
 function App() {
   return (
     <>
@@ -18,12 +18,14 @@ function App() {
             },
           }}></Toaster>
       </div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Editor/:roomId" element={<EditorRoomPages />} />
-        </Routes>
-      </BrowserRouter>
+      <LivecodeState>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Editor/:roomId" element={<EditorRoomPages />} />
+          </Routes>
+        </BrowserRouter>
+      </LivecodeState>
     </>
   );
 }

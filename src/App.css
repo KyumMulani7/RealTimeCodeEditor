@@ -2,16 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #e5cac5;
   height: 100vh;
 }
 
 .formWrapper {
-  background: #282a36;
+  background: #24094e;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
   max-width: 90%;
+  border: 2px solid #45496d;
 }
 
 footer {
@@ -95,10 +96,77 @@ footer {
   color: #fff;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid #2b41c3;
 }
 
 .asideInner {
   flex: 1;
+}
+
+.editorWrap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+div.editorWrap div.CodeMirror {
+  flex: 78%;
+  font-size: 20px;
+  line-height: 1.6;
+  border-bottom: 1px solid #656774;
+}
+
+.editorWrap .gap{
+  flex: 2%;
+  background: #000;
+}
+
+.editorWrap .btnSelect{
+  border: none;
+  padding: 6px;
+  border-radius: 5px;
+  font-weight: bold;
+  background: #a75b5b;
+  transition: all 0.3s ease-in-out;
+}
+
+.btnSelect:hover{
+  background: #c77373;
+}
+
+.editorWrap .compilerWrap{
+  flex: 20%;
+  background: #1d1724;
+  border-top: 1px solid #463846;
+}
+
+.compilerWrap label {
+  color: #fff
+}
+
+.compilerWrap{
+  display: flex;
+  gap: 5px;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.compilerWrap > div{
+  margin-top: 5px;
+  margin-left: 6px;
+  }
+
+.compilerBtn{
+  border: none;
+  padding: 6px;
+  border-radius: 5px;
+  font-weight: bold;
+  background: #a75b5b;
+  transition: all 0.3s ease-in-out;
+}
+
+.compiledOutput{
+  color: #fff;
 }
 
 .clientsList {
@@ -131,9 +199,3 @@ footer {
   width: 100%;
 }
 
-.CodeMirror {
-  min-height: calc(100vh - 20px);
-  font-size: 20px;
-  line-height: 1.6;
-  padding-top: 20px;
-}

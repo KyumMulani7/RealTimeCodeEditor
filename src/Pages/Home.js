@@ -42,12 +42,12 @@ const Home = () => {
           src="/code-sync.png"
           alt="code-sync-logo"
         />
-        <h4 className="mainLabel">Paste invitation ROOM ID</h4>
+        <h4 className="mainLabel">Login into Room to collab together</h4>
         <div className="inputGroup">
           <input
             type="text"
             className="inputBox"
-            placeholder="ROOM ID"
+            placeholder="Paste or type your invitation Room Id"
             onChange={(e) => setRoomId(e.target.value)}
             value={roomId}
             onKeyUp={handleInputEnter}
@@ -55,7 +55,7 @@ const Home = () => {
           <input
             type="text"
             className="inputBox"
-            placeholder="USERNAME"
+            placeholder="Type your Username"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
             onKeyUp={handleInputEnter}

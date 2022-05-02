@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
 import ACTIONS from "../Actions";
 import Client from "../Components/Client";
 import Editor from "../Components/Editor";
 import { initSocket } from "../socket";
+import LivecodeContext from "../Context/livecode/LivecodeContext";
 import {
   useLocation,
   useNavigate,
@@ -13,11 +14,21 @@ import {
 
 const EditorRoomPages = () => {
   const socketRef = useRef(null);
-  const codeRef = useRef(null);
   const location = useLocation();
   const { roomId } = useParams();
   const reactNavigator = useNavigate();
   const [clients, setClients] = useState([]);
+  const livecode = useContext(LivecodeContext);
+  const { codeState, removeCode } = livecode;
+  const codeRef = useRef(codeState);
+
+  const setCodeData = (code) => {
+    codeRef.current = code;
+  };
+
+  useEffect(() => {
+    setCodeData(codeState);
+  }, [codeState]);
 
   useEffect(() => {
     const init = async () => {
@@ -35,7 +46,6 @@ const EditorRoomPages = () => {
         roomId,
         username: location.state?.username,
       });
-
       // Listening for joined event
       socketRef.current.on(
         ACTIONS.JOINED,
@@ -45,6 +55,7 @@ const EditorRoomPages = () => {
             console.log(`${username} joined`);
           }
           setClients(clients);
+          // new user should get those code which other already joined user had already written in editor
           socketRef.current.emit(ACTIONS.SYNC_CODE, {
             code: codeRef.current,
             socketId,
@@ -65,6 +76,7 @@ const EditorRoomPages = () => {
       socketRef.current.disconnect();
       socketRef.current.off(ACTIONS.JOINED);
       socketRef.current.off(ACTIONS.DISCONNECTED);
+      removeCode();
     };
   }, []);
 
@@ -108,13 +120,7 @@ const EditorRoomPages = () => {
         </button>
       </div>
       <div className="editorWrap">
-        <Editor
-          socketRef={socketRef}
-          roomId={roomId}
-          onCodeChange={(code) => {
-            codeRef.current = code;
-          }}
-        />
+        <Editor socketRef={socketRef} roomId={roomId} />
       </div>
     </div>
   );
