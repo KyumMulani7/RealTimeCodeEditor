@@ -22,7 +22,7 @@ app.use(express.static("build"));
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);
   res.sendFile(path.join(__dirname, "build", "index.html"));
-  // next();
+  next();
 });
 
 // app.get("/*", function (req, res) {
