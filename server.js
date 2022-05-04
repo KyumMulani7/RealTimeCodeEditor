@@ -111,7 +111,7 @@ app.post("/run", async (req, res) => {
       console.log("deleted code file");
     });
   }
-  return res.status(200).json({ filepath, output });
+  return res.json({ filepath, output });
 });
 
 const PORT = process.env.PORT || 5000;
