@@ -22,7 +22,7 @@ app.use(express.static("build"));
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);
   res.sendFile(path.join(__dirname, "build", "index.html"));
-  next();
+  // next();
 });
 
 // app.get("/*", function (req, res) {
@@ -111,7 +111,7 @@ app.post("/run", async (req, res) => {
       console.log("deleted code file");
     });
   }
-  return res.json({ filepath, output });
+  return res.status(200).json({ filepath, output });
 });
 
 const PORT = process.env.PORT || 5000;
