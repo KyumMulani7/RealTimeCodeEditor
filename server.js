@@ -19,21 +19,13 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(express.static("build"));
-// app.use((req, res, next) => {
-//   console.log(`${req.method} ${req.originalUrl}`);
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-//   next();
-// });
-
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+  return next();
 });
-// app.get("/*", function (req, res) {
-//   console.log(`${req.method} ${req.originalUrl}`);
-// });
 
-// app.post("/*", function (req, res) {
-//   console.log(`${req.method} ${req.originalUrl}`);
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "index.html"));
 // });
 
 // Websocket logic for real time sharing code

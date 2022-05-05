@@ -9,11 +9,9 @@ const LivecodeState = (props) => {
   };
 
   const [state, dispatch] = useReducer(LivecodeReducer, initialState);
-  console.log("state in stateFile", state);
 
   // Set code change value
   const setCodeChange = (text) => {
-    console.log("inside dispatch", text);
     dispatch({
       type: SET_CODE,
       payload: text,
