@@ -15,16 +15,13 @@ function Compiler() {
 
     try {
       setOutput("");
-      const res = await fetch(
-        "https://mk7-realtimecodeeditor.herokuapp.com/run",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch("http://localhost:5000/run", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: JSON.stringify(payload),
+      });
       const data = await res.json();
       setOutput(data.output);
     } catch ({ response }) {
