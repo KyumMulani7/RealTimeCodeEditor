@@ -19,15 +19,15 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(express.static("build"));
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.originalUrl}`);
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-  next();
-});
-
-// app.get("/*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "index.html"));
+// app.use((req, res, next) => {
+//   console.log(`${req.method} ${req.originalUrl}`);
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+//   next();
 // });
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 // app.get("/*", function (req, res) {
 //   console.log(`${req.method} ${req.originalUrl}`);
 // });
@@ -89,6 +89,7 @@ io.on("connection", (socket) => {
 
 //Compiler logic
 app.post("/run", async (req, res) => {
+  console.log("Inside run");
   const { language = "cpp", code } = req.body;
 
   if (code === undefined) {

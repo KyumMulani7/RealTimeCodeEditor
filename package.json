@@ -2,7 +2,7 @@
   "name": "realtime_code_editor",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://mk7-realtimecodeeditor.herokuapp.com/",
   "engines": {
     "npm": "6.14.10",
     "node": "14.15.4" 
