@@ -55,11 +55,14 @@ const EditorRoomPages = () => {
             console.log(`${username} joined`);
           }
           setClients(clients);
-          // new user should get those code which other already joined user had already written in editor
-          socketRef.current.emit(ACTIONS.SYNC_CODE, {
-            code: codeRef.current,
-            socketId,
-          });
+          if (codeRef.current) {
+            setCodeData(codeRef.current);
+            // new user should get those code which other already joined user had already written in editor
+            socketRef.current.emit(ACTIONS.SYNC_CODE, {
+              code: codeRef.current,
+              socketId,
+            });
+          }
         }
       );
 
@@ -72,6 +75,7 @@ const EditorRoomPages = () => {
       });
     };
     init();
+
     return () => {
       socketRef.current.disconnect();
       socketRef.current.off(ACTIONS.JOINED);
@@ -97,7 +101,6 @@ const EditorRoomPages = () => {
   if (!location.state) {
     return <Navigate to="/" />;
   }
-
   return (
     <div className="mainWrap">
       <div className="aside">

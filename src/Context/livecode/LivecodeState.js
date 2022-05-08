@@ -6,6 +6,7 @@ import { SET_CODE, REMOVE_CODE } from "../types";
 const LivecodeState = (props) => {
   const initialState = {
     code: "",
+    loader: true,
   };
 
   const [state, dispatch] = useReducer(LivecodeReducer, initialState);

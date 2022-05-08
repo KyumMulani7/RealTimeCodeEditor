@@ -13,6 +13,9 @@
   width: 400px;
   max-width: 90%;
   border: 2px solid #45496d;
+  -webkit-box-shadow: 10px 10px 5px 0px #1b031e;
+-moz-box-shadow: 10px 10px 5px 0px #1b031e;
+box-shadow: 10px 10px 5px 0px #1b031e;
 }
 
 footer {
@@ -46,6 +49,10 @@ footer {
   font-weight: bold;
 }
 
+.inputBox:focus {
+  border-bottom: 2px solid #25cb11;
+}
+
 .btn {
   border: none;
   padding: 10px;
@@ -66,6 +73,10 @@ footer {
 .joinBtn:hover,
 .leaveBtn:hover {
   background: #2b824c;
+}
+
+.copyBtn:hover{
+  background: #a4ade2;
 }
 
 .createInfo {
@@ -126,12 +137,12 @@ div.editorWrap div.CodeMirror {
   padding: 6px;
   border-radius: 5px;
   font-weight: bold;
-  background: #a75b5b;
+  background: #4aed88;
   transition: all 0.3s ease-in-out;
 }
 
-.btnSelect:hover{
-  background: #c77373;
+.btnSelect:hover,.compilerBtn:hover{
+  background: #368654;
 }
 
 .editorWrap .compilerWrap{
@@ -146,12 +157,12 @@ div.editorWrap div.CodeMirror {
 
 .compilerWrap{
   display: flex;
+  justify-content: flex-start;
   gap: 5px;
-  justify-content: start;
   flex-wrap: wrap;
 }
 
-.compilerWrap > div{
+.compilerWrap > div.margComp{
   margin-top: 5px;
   margin-left: 6px;
   }
@@ -160,9 +171,19 @@ div.editorWrap div.CodeMirror {
   border: none;
   padding: 6px;
   border-radius: 5px;
+  cursor: pointer;
   font-weight: bold;
-  background: #a75b5b;
+  background: #4aed88;
   transition: all 0.3s ease-in-out;
+}
+
+.btnLang{
+  margin-left: 10px;
+  border: 2px solid #59eb0b
+}
+
+.btnLang:hover{
+  background-color: #c7a9ad;
 }
 
 .compiledOutput{
@@ -197,5 +218,155 @@ div.editorWrap div.CodeMirror {
 .leaveBtn {
   margin-top: 20px;
   width: 100%;
+}
+
+.editorLoader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0,0,0,0.75);
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+
+.modal-header,
+.modal-content {
+  padding: 1.5rem;
+}
+
+.modal-title {
+  margin: 0;
+  color: white;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: hsla(300, 80%, 90%, 0.2);
+  border-radius: 1.5rem 1.5rem 0 0;
+  border: 4px solid #f7baf72f;
+  border-bottom: none;
+}
+
+.modal-content {
+  color: white;
+  border-radius: 0 0 1.5rem 1.5rem;
+  border: 4px solid #f7baf744;
+  border-top: none;
+}
+
+.modal {
+  margin: auto;
+  width: 90%;
+  max-width: 40rem;
+  background: linear-gradient(135deg, hsl(300, 40%, 20%),hsl(300, 40%, 5%));
+  border-radius: 1.5rem;
+  box-shadow: 0 1rem 2rem #000a;
+}
+
+.modal-close {
+  color: transparent;
+  display: block;
+  height: 1.5rem;
+  width: 1.5rem;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      to top right,
+      transparent 48%,
+      white 48%,
+      white 52%,
+      transparent 52%
+    ),
+    linear-gradient(
+      to top left,
+      transparent 48%,
+      white 48%,
+      white 52%,
+      transparent 52%
+    );
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  cursor: pointer;
+  background-image:
+    linear-gradient(
+      to top right,
+      transparent 46%,
+      white 46%,
+      white 54%,
+      transparent 54%
+    ),
+    linear-gradient(
+      to top left,
+      transparent 46%,
+      white 46%,
+      white 54%,
+      transparent 54%
+    );
+}
+
+@media screen and (max-width: 600px){
+  .formWrapper {
+    margin: 0 16px;
+  }
+  .mainWrap{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+  }
+  .aside{
+    height: 32vh;
+  }
+  .editorWrap{
+    height: 65vh;
+  }
+  .asideInner h3{
+    text-align: center;
+    margin: 5px 0;
+  }
+  .asideInner {
+    flex: 0 1;
+  }
+  .clientsList{
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+  .copyBtn,.leaveBtn{
+    display: inline-block;
+  }
+  footer > h4{
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .mainWrap{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+  }
+  .aside{
+    height: 43vh;
+  }
+  .editorWrap{
+    height: 52vh;
+  }
 }
 

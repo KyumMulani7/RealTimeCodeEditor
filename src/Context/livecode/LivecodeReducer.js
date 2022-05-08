@@ -11,6 +11,7 @@ const LivecodeReducer = (state, action) => {
       return {
         ...state,
         code: "",
+        loader: true,
       };
     default:
       return state;

@@ -20,16 +20,20 @@ const Editor = ({ socketRef, roomId }) => {
       value: "dracula",
     },
     {
-      label: "Ayu-dark",
-      value: "ayu-dark",
-    },
-    {
       label: "Material-ocean",
       value: "material-ocean",
     },
     {
       label: "Duotone-light",
       value: "duotone-light",
+    },
+    {
+      label: "Midnight",
+      value: "midnight",
+    },
+    {
+      label: "Vibrant-Ink",
+      value: "vibrant-ink",
     },
   ];
   useEffect(() => {
@@ -47,7 +51,7 @@ const Editor = ({ socketRef, roomId }) => {
       editorRef.current.on("change", (instance, changes) => {
         const { origin } = changes;
         const code = instance.getValue();
-        setCodeChange(code);
+        code && setCodeChange(code);
         if (origin !== "setValue") {
           socketRef.current.emit(ACTIONS.CODE_CHANGE, {
             roomId,
@@ -61,13 +65,16 @@ const Editor = ({ socketRef, roomId }) => {
 
   useEffect(() => {
     if (socketRef.current) {
-      socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-        if (code !== null) {
-          editorRef.current.setValue(code);
-        }
-      });
+      try {
+        socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
+          if (code !== null && code !== "") {
+            editorRef.current.setValue(code);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-
     return () => {
       socketRef.current.off(ACTIONS.CODE_CHANGE);
     };
@@ -90,7 +97,7 @@ const Editor = ({ socketRef, roomId }) => {
       editorRef.current.on("change", (instance, changes) => {
         const { origin } = changes;
         const code = instance.getValue();
-        setCodeChange(code);
+        code && setCodeChange(code);
         if (origin !== "setValue") {
           socketRef.current.emit(ACTIONS.CODE_CHANGE, {
             roomId,
@@ -107,8 +114,8 @@ const Editor = ({ socketRef, roomId }) => {
       <textarea id="realtimeEditor"></textarea>
       <div className="gap"></div>
       <div className="compilerWrap">
-        <div className="selectWrap">
-          <label>Please select theme for the editor: </label>
+        <div className="selectWrap margComp">
+          <label>Please select theme: </label>
           <select
             value={theme}
             className="btnSelect"
