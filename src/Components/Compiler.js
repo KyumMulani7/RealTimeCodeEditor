@@ -81,6 +81,7 @@ function Compiler() {
         <section className="modal">
           <header className="modal-header">
             <h2 className="modal-title">Language selection</h2>
+     {/*  eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
             <a onClick={closeModal} className="modal-close">
               Close
             </a>
