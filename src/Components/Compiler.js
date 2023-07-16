@@ -17,7 +17,7 @@ function Compiler() {
     try {
       setOutput("");
       const res = await fetch(
-        "https://mk7-realtimecodeeditor.herokuapp.com/run",
+        `${window.location.origin}/run`,
         {
           method: "POST",
           headers: {
