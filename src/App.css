@@ -1,5 +1,6 @@
 .homePageWrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #e5cac5;
@@ -16,11 +17,6 @@
   -webkit-box-shadow: 10px 10px 5px 0px #1b031e;
 -moz-box-shadow: 10px 10px 5px 0px #1b031e;
 box-shadow: 10px 10px 5px 0px #1b031e;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
 }
 
 .inputGroup {
