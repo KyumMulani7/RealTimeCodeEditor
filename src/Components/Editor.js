@@ -61,6 +61,7 @@ const Editor = ({ socketRef, roomId }) => {
       });
     }
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -76,8 +77,10 @@ const Editor = ({ socketRef, roomId }) => {
       }
     }
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       socketRef.current.off(ACTIONS.CODE_CHANGE);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socketRef.current]);
 
   useEffect(() => {
@@ -107,6 +110,7 @@ const Editor = ({ socketRef, roomId }) => {
       });
     }
     loadMyModule();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   return (
