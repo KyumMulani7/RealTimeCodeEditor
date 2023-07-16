@@ -82,6 +82,7 @@ const EditorRoomPages = () => {
       socketRef.current.off(ACTIONS.DISCONNECTED);
       removeCode();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function copyRoomId() {
